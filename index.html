@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+
+    <title>Frontend Mentor | E-commerce product page</title>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100;200;300;400;500;600;700;800;900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+      body {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: "Kumbh Sans", sans-serif;
+        width: 100vw;
+        overflow-x: hidden;
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: space-around;
+        margin: auto;
+        padding: 15px;
+        margin-bottom: 15px;
+      }
+
+      .interaction-items {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 20%;
+      }
+
+      .selection-variety {
+        display: flex;
+        justify-content: space-around;
+        width: 40%;
+        align-items: flex-end;
+      }
+
+      a {
+        color: black;
+        text-decoration: none;
+      }
+
+      .menu a {
+        color: black;
+      }
+
+      .avatar {
+        width: 50px;
+        height: 50px;
+      }
+
+      .container {
+        width: 100vw;
+        height: 70vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .product-container {
+        max-width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 25px;
+      }
+
+      .product-images {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        width: 50%;
+      }
+
+      .preview {
+        width: 25rem;
+        height: 25rem;
+        cursor: pointer;
+      }
+
+      .preview img {
+        height: 100%;
+        width: 100%;
+        border-radius: 5px;
+        object-fit: cover;
+      }
+
+      .images-remain {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        gap: 10px;
+        width: 65%;
+      }
+
+      .small-image img {
+        width: 80px;
+        border-radius: 5px;
+        height: 80px;
+        cursor: pointer;
+        transition: 0.5s all;
+      }
+
+      .small-image.active img {
+        border: 4px solid hsl(26, 100%, 55%);
+      }
+
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      input {
+        text-align: center;
+        width: 40px;
+        height: 30px;
+        margin: 16px;
+        background: none;
+        border: none;
+        outline: none;
+        font-family: inherit;
+        font-size: 1.5rem;
+        font-weight: 900;
+      }
+
+      .items-management {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+      }
+
+      h4 {
+        color: hsl(26, 100%, 55%);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+      h1 {
+        font-size: 3rem;
+        font-weight: 800;
+        width: 70%;
+      }
+
+      .description {
+        color: hsl(220, 14%, 75%);
+        width: 60%;
+      }
+
+      .price-container {
+        display: flex;
+        align-items: center;
+      }
+
+      .price-current {
+        color: black;
+        font-weight: 800;
+        font-size: 1.5rem;
+      }
+
+      .discount {
+        color: hsl(26, 100%, 55%);
+        background: hsl(25, 100%, 94%);
+        padding: 8px 0px;
+        text-align: center;
+        width: 10%;
+        border-radius: 5px;
+        font-weight: 500;
+        margin-left: 1rem;
+      }
+
+      .product-information {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .normal-price {
+        text-decoration: line-through;
+        font-size: 1.2rem;
+        color: hsl(220, 14%, 75%);
+        font-weight: 500;
+      }
+      .items-management {
+        width: 80%;
+        display: flex;
+        justify-content: space-around;
+      }
+
+      button {
+        border: none;
+        padding: 1rem;
+        outline: none;
+        font-family: inherit;
+        font-size: 1rem;
+        cursor: pointer;
+        background: none;
+      }
+
+      .add-btn {
+        background: hsl(26, 100%, 55%);
+        padding: 1rem 4rem;
+        border-radius: 5px;
+        vertical-align: middle;
+        color: white;
+      }
+
+      .btn {
+        color: hsl(26, 100%, 55%);
+        font-size: 1.5rem;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        align-items: center;
+        font-weight: 800;
+      }
+
+      .add-btn img {
+        margin-right: 1rem;
+        filter: brightness(0) invert(1);
+      }
+
+      .logo {
+        padding-top: 1rem;
+      }
+
+      .menu-btn {
+        width: 45px;
+        height: 30px;
+        margin-right: 5px;
+        cursor: pointer;
+        display: none;
+      }
+
+      .menu-bg {
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.597);
+        position: fixed;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        z-index: -1;
+        transition: 0.5s all;
+      }
+
+      .menu {
+        transform: translateX(-100%);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 15px;
+        width: 50%;
+        height: 100%;
+        align-items: center;
+        background: hsl(223, 64%, 98%);
+        transition: opacity 0.5s, transform 0.5s;
+        opacity: 0;
+      }
+
+      .menu-bg.active {
+        display: block;
+        opacity: 1;
+        z-index: 100;
+        transition: all 0.5s;
+      }
+
+      .menu.active {
+        display: flex;
+        opacity: 1;
+        transform: translateX(0);
+        transition: all 0.5s;
+      }
+
+      .cart-btn {
+        position: relative;
+        top: 0;
+        left: 0;
+      }
+
+      .items-dot {
+        position: absolute;
+        top: -15px;
+        right: -10px;
+        width: 15px;
+        height: 15px;
+        text-align: center;
+        border-radius: 50%;
+        background: hsl(26, 100%, 55%);
+        display: none;
+        font-size: 10px;
+        color: white;
+      }
+
+      .items-dot.active {
+        display: block;
+      }
+
+      .swiper {
+        height: 35vh;
+        width: 100%;
+        margin-top: 3rem;
+
+        display: none;
+        position: relative;
+        top: 0;
+        left: 0;
+      }
+      .swiper img {
+        height: 100%;
+        width: 100%;
+      }
+
+      @media screen and (max-width: 970px) {
+        .selection-variety {
+          display: none;
+        }
+
+        .container {
+          flex-direction: column;
+        }
+        .menu-btn {
+          display: inline;
+        }
+        .product-container {
+          flex-direction: column;
+        }
+
+        .product-images {
+          display: none;
+        }
+
+        .items-management {
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+        }
+
+        .quantity-management {
+          display: flex;
+          justify-content: space-between;
+          width: 70%;
+        }
+
+        .container {
+          height: 100vh;
+        }
+
+        .swiper {
+          display: block;
+        }
+        .avatar {
+          width: 40px;
+          height: 40px;
+        }
+
+        .left,
+        .right {
+          background-color: orange;
+          color: white;
+          border-radius: 50%;
+        }
+
+        .left {
+          position: absolute;
+          top: 50%;
+          left: 0;
+        }
+
+        .right {
+          position: absolute;
+          top: 50%;
+          right: 0;
+          margin-right: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="logo">
+        <button class="menu-btn">
+          <img src="./images/icon-menu.svg" alt="" />
+        </button>
+
+        <img src="./images/logo.svg" alt="" />
+      </div>
+      <div class="selection-variety">
+        <a href="#">Collections</a>
+        <a href="#">Men</a>
+        <a href="#">Women</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+      </div>
+      <div class="interaction-items">
+        <a href="#" class="cart-btn">
+          <img src="./images/icon-cart.svg" alt="" />
+
+          <p class="items-dot"></p>
+        </a>
+
+        <a href="#">
+          <img src="./images/image-avatar.png" class="avatar" alt="" />
+        </a>
+      </div>
+    </div>
+
+    <div class="menu-bg">
+      <div class="menu">
+        <a href="#">Collections</a>
+        <a href="#">Men</a>
+        <a href="#">Women</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="swiper">
+        <button class="left">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <img src="./images/image-product-1.jpg" alt="" />
+        <button class="right">
+          <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
+
+      <div class="product-container">
+        <div class="product-images">
+          <div class="preview">
+            <img src="./images/image-product-1.jpg" alt="" />
+          </div>
+          <div class="images-remain">
+            <button
+              class="small-image active"
+              data-bigImgSrc="./images/image-product-1.jpg"
+            >
+              <img src="./images/image-product-1-thumbnail.jpg" alt="" />
+            </button>
+            <button
+              class="small-image"
+              data-bigImgSrc="./images/image-product-2.jpg"
+            >
+              <img src="./images/image-product-2-thumbnail.jpg" alt="" />
+            </button>
+            <button
+              class="small-image"
+              data-bigImgSrc="./images/image-product-3.jpg"
+            >
+              <img src="./images/image-product-3-thumbnail.jpg" alt="" />
+            </button>
+            <button
+              class="small-image"
+              data-bigImgSrc="./images/image-product-4.jpg"
+            >
+              <img src="./images/image-product-4-thumbnail.jpg" alt="" />
+            </button>
+          </div>
+        </div>
+
+        <div class="product-information">
+          <h4>Sneaker Company</h4>
+          <h1 class="title">Fall Limited Edition Sneakers</h1>
+          <p class="description">
+            These low-profile sneakers are your perfect casual wear companion.
+            Featuring a durable rubber outer sole, they’ll withstand everything
+            the weather can offer.
+          </p>
+
+          <div class="price-container">
+            <p class="price-current">$125.00</p>
+            <p class="discount">50%</p>
+          </div>
+          <p class="normal-price">$250.00</p>
+
+          <div class="items-management">
+            <div class="quantity-management">
+              <button class="decrease-btn btn">-</button>
+              <input
+                type="number"
+                min="0"
+                disabled
+                value="0"
+                class="quantity"
+              />
+              <button class="increase-btn btn">+</button>
+            </div>
+            <button class="add-btn">
+              <img src="./images/icon-cart.svg" alt="" />Add to cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
